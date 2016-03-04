@@ -45,14 +45,17 @@ public class Evaluator {
 		else {
 
 			if (TypeSystem.getType(opr1).equalsIgnoreCase("SecInt")) {
-				 s = new SecBoolean(true);
-				((SecBoolean) s).setSecLevel(opr1.getSecLevel());
-				((SecBoolean) s).setVal(evalRelOp(((SecInt) opr1).getVal(), ((SecInt) opr2).getVal(), op.getOperator()));
+				s = new SecBoolean(true);
+				((SecBoolean) s).setSecLevel(opr1.getSecLevel().getLevel() > opr2.getSecLevel().getLevel()
+						? opr1.getSecLevel() : opr2.getSecLevel());
+				((SecBoolean) s)
+						.setVal(evalRelOp(((SecInt) opr1).getVal(), ((SecInt) opr2).getVal(), op.getOperator()));
 			}
 			if (TypeSystem.getType(opr1).equalsIgnoreCase("SecFloat")) {
-				 s = new SecBoolean(true);
+				s = new SecBoolean(true);
 				((SecBoolean) s).setSecLevel(opr1.getSecLevel());
-				((SecBoolean) s).setVal(evalRelOp(((SecFloat) opr1).getVal(), ((SecFloat) opr2).getVal(), op.getOperator()));
+				((SecBoolean) s)
+						.setVal(evalRelOp(((SecFloat) opr1).getVal(), ((SecFloat) opr2).getVal(), op.getOperator()));
 			}
 		}
 		return s;
@@ -106,7 +109,7 @@ public class Evaluator {
 		}
 		throw new UnsupportedOperationException("Invalid Operand");
 	}
-	
+
 	public boolean evalRelOp(float t1, float t2, String ch) {
 		if ("==".equals(ch)) {
 			return t1 == t2;
@@ -123,5 +126,5 @@ public class Evaluator {
 		}
 		throw new UnsupportedOperationException("Invalid Operator");
 	}
-	
+
 }

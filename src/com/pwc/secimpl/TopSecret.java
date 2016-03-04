@@ -1,6 +1,8 @@
 package com.pwc.secimpl;
 
-public class TopSecret {
+import com.pwc.SecLevel;
+
+public class TopSecret implements SecLevel {
 	private final int level;
 
 	public TopSecret() {

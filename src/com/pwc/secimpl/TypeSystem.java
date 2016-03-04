@@ -13,6 +13,12 @@ public class TypeSystem {
 			return true;
 		return false;
 	}
+	
+	public static boolean typeCheck1(SecOperand opr1, SecOperand opr2) {
+		if (opr1.getType() >= opr2.getType())
+			return true;
+		return false;
+	}
 
 	public static String getType(SecOperand opr1) {
 		String zeta = "";
