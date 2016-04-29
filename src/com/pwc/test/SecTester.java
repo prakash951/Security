@@ -35,6 +35,8 @@ public class SecTester {
 		test11();
 		test2();
 		test3();
+		test33();
+		test32();
 		// test31();
 		// test4();
 		// test5();
@@ -61,7 +63,7 @@ public class SecTester {
 		Evaluator ev = new Evaluator();
 		System.out.println(ev.evaluate(s1, ev.evaluate(s1, s2, op), op));
 	}
-	
+
 	public static void test111() {
 		SecInt s1 = new SecInt(40, new L());
 		SecInt s2 = new SecInt(20, new H());
@@ -97,6 +99,35 @@ public class SecTester {
 		} else {
 			sc.secAssign(s4, 70, level);
 		}
+	}
+
+	public static void test32() {
+		SecInt s1 = new SecInt(10, new L());
+		SecInt s2 = new SecInt(20, new H());
+		SecLevel slevel = null;
+		int level = -1;
+		SecAssign sc = new SecAssign();
+		SecRelationOperator rel = new RelationOperator("<=");
+		level = Math.max(s1.getSecLevel().getLevel(), s2.getSecLevel().getLevel());
+		slevel = s1.getSecLevel().getLevel() > s2.getSecLevel().getLevel() ? s1.getSecLevel() : s2.getSecLevel();
+		while (SecCondition.check(s1, s2, rel, level)) {
+			sc.secAssign(s1, new SecInt(s2.getVal() + 1, slevel));
+		}
+	}
+
+	public static void test33() {
+		SecInt s1 = new SecInt(10, new TopSecret());
+		SecInt s2 = new SecInt(20, new H());
+		SecLevel slevel = null;
+		int level = -1;
+		SecAssign sc = new SecAssign();
+		SecRelationOperator rel = new RelationOperator("<=");
+		level = Math.max(s1.getSecLevel().getLevel(), s2.getSecLevel().getLevel());
+		slevel = s1.getSecLevel().getLevel() > s2.getSecLevel().getLevel() ? s1.getSecLevel() : s2.getSecLevel();
+		while (SecCondition.check(s1, s2, rel, level)) {
+			sc.secAssign(s1, new SecInt(s2.getVal() + 1, slevel));
+		}
+		System.out.println(s1);
 	}
 
 	public static void test31() {
