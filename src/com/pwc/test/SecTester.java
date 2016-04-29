@@ -2,11 +2,16 @@ package com.pwc.test;
 
 import java.util.Scanner;
 
+import com.pwc.SecLevel;
 import com.pwc.SecOperand;
 import com.pwc.SecRelationOperator;
+import com.pwc.secimpl.Confidential;
 import com.pwc.secimpl.Evaluator;
 import com.pwc.secimpl.H;
+import com.pwc.secimpl.H1;
+import com.pwc.secimpl.H2;
 import com.pwc.secimpl.IntOperator;
+import com.pwc.secimpl.Intr1;
 import com.pwc.secimpl.Intr2;
 import com.pwc.secimpl.L;
 import com.pwc.secimpl.RelationOperator;
@@ -27,11 +32,14 @@ public class SecTester {
 
 	public static void main(String[] args) {
 		test1();
+		test11();
 		test2();
 		test3();
 		// test31();
 		// test4();
-		test5();
+		// test5();
+		test6();
+		test7();
 	}
 
 	public static void test1() {
@@ -39,6 +47,26 @@ public class SecTester {
 		SecInt s2 = new SecInt(20, new H());
 		SecAssign sc = new SecAssign();
 		sc.secAssign(s1, 30);
+		IntOperator op = new IntOperator('*');
+		Evaluator ev = new Evaluator();
+		System.out.println(ev.evaluate(s1, ev.evaluate(s1, s2, op), op));
+	}
+
+	public static void test11() {
+		SecInt s1 = new SecInt(40, new L());
+		SecInt s2 = new SecInt(20, new H());
+		SecAssign sc = new SecAssign();
+		sc.secAssign(s1, new SecInt(40, new L()));
+		IntOperator op = new IntOperator('*');
+		Evaluator ev = new Evaluator();
+		System.out.println(ev.evaluate(s1, ev.evaluate(s1, s2, op), op));
+	}
+	
+	public static void test111() {
+		SecInt s1 = new SecInt(40, new L());
+		SecInt s2 = new SecInt(20, new H());
+		SecAssign sc = new SecAssign();
+		sc.secAssign(s1, new SecInt(40, new H()));
 		IntOperator op = new IntOperator('*');
 		Evaluator ev = new Evaluator();
 		System.out.println(ev.evaluate(s1, ev.evaluate(s1, s2, op), op));
@@ -110,7 +138,7 @@ public class SecTester {
 
 	public static void test5() {
 		Scanner sc = new Scanner(System.in);
-		sc.next();
+		// sc.next();
 		SecOperand[] ints = new SecOperand[10];
 		System.out.println();
 		boolean b = true;
@@ -129,4 +157,26 @@ public class SecTester {
 		sc.close();
 	}
 
+	public static void test6() {
+		SecInt s1 = new SecInt(40, new L());
+		SecInt s2 = new SecInt(20, new H());
+		SecAssign sc = new SecAssign();
+		sc.secAssign(s1, 80);
+		IntOperator op = new IntOperator('+');
+		Intr1 i1 = new Intr1();
+		SecInt s3 = new SecInt(0, new L());
+		SecLevel c1 = new Confidential();
+		// new L()
+		System.out.println(i1.operate(s1, s2, s3, op, c1));
+	}
+
+	public static void test7() {
+		SecInt s1 = new SecInt(40, new H1());
+		SecInt s2 = new SecInt(20, new H2());
+		SecAssign sc = new SecAssign();
+		sc.secAssign(s1, 80);
+		IntOperator op = new IntOperator('+');
+		Intr1 i1 = new Intr1();
+		System.out.println(i1.operate1(s1, s2, op));
+	}
 }
