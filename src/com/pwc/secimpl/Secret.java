@@ -12,4 +12,8 @@ public class Secret implements SecLevel {
 	public int getLevel() {
 		return level;
 	}
+
+	public String toString() {
+		return "Secret";
+	}
 }

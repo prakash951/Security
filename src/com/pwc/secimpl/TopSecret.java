@@ -13,4 +13,8 @@ public class TopSecret implements SecLevel {
 		return level;
 	}
 
+	public String toString() {
+		return "TopSecret";
+	}
+
 }

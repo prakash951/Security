@@ -3,9 +3,9 @@ package com.pwc.secimpl;
 import com.pwc.SecLevel;
 import com.pwc.SecOperand;
 
-public class SecFloat implements SecOperand {
+public class SecFloat implements SecOperand, Comparable<SecFloat> {
 	public static final int type = 2;
-	private float val;
+	private Float val;
 	private SecLevel secLevel;
 
 	public SecFloat(float val) {
@@ -41,11 +41,16 @@ public class SecFloat implements SecOperand {
 	}
 
 	public String toString() {
-		return "[ " + this.val + " ]";
+		return "[ " + this.val + "\t,\t" + this.getSecLevel() + " ]";
 	}
-	
+
 	@Override
 	public int getType() {
 		return type;
+	}
+
+	@Override
+	public int compareTo(SecFloat flo) {
+		return this.val.compareTo(flo.getVal());
 	}
 }

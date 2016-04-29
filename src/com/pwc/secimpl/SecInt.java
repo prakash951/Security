@@ -3,7 +3,7 @@ package com.pwc.secimpl;
 import com.pwc.SecLevel;
 import com.pwc.SecOperand;
 
-public class SecInt implements SecOperand {
+public class SecInt implements SecOperand, Comparable<SecInt> {
 	public static final int type = 1;
 	private int val;
 	private SecLevel secLevel;
@@ -41,12 +41,17 @@ public class SecInt implements SecOperand {
 	}
 
 	public String toString() {
-		return "[ " + this.val + " ]";
+		return "[ " + this.val + "\t,\t" + this.getSecLevel() + " ]";
 	}
 
 	@Override
 	public int getType() {
 		return type;
+	}
+
+	@Override
+	public int compareTo(SecInt in) {
+		return this.val - in.val;
 	}
 
 }

@@ -84,6 +84,8 @@ public class SecAssign {
 		if (op1.getSecLevel().getLevel() < level) {
 			throw new RuntimeException("Operation not allowed");
 		}
+		System.out.println(op1.getSecLevel().getLevel());
+		System.out.println(level);
 		if (op1.getType() != 1) {
 			throw new RuntimeException("Invalid Types");
 		} else {

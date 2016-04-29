@@ -41,6 +41,6 @@ public class SecBoolean implements SecOperand {
 	}
 
 	public String toString() {
-		return "[ " + val + " ]";
+		return "[ " + this.val + "\t,\t" + this.getSecLevel() + " ]";
 	}
 }

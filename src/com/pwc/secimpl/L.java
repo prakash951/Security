@@ -12,4 +12,8 @@ public class L implements SecLevel {
 	public int getLevel() {
 		return level;
 	}
+
+	public String toString() {
+		return "Low";
+	}
 }

@@ -2,10 +2,10 @@ package com.pwc.secimpl;
 
 import com.pwc.SecLevel;
 
-public class H implements SecLevel {
+public class H1 implements SecLevel {
 	private final int level;
 
-	public H() {
+	public H1() {
 		this.level = 1;
 	}
 
@@ -14,6 +14,6 @@ public class H implements SecLevel {
 	}
 
 	public String toString() {
-		return "High";
+		return "High1";
 	}
 }
